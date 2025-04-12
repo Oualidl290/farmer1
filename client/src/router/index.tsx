@@ -1,6 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+// layouts
+import FarmerDashboardLayout from "../layouts/farmer-dashboard";
 // pages
 import Home from "./pages/home";
+// farmer page
+import FarmerDashboard from "./pages/dashboard/index";
 
 const router = createBrowserRouter([
   {
@@ -8,8 +12,14 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "about",
-    element: <div>About</div>,
+    path: "farmer",
+    element: <FarmerDashboardLayout />,
+    children: [
+      {
+        path: "dashboard",
+        element: <FarmerDashboard />,
+      },
+    ],
   },
 ]);
 
