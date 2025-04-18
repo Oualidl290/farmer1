@@ -12,15 +12,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $products = Product::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json($products);
     }
 
     /**
@@ -28,7 +22,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:255'],
+            'subtype' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric'],
+            'quantity_available' => ['required', 'integer'],
+        ]);
+
+        $product = Product::create($validated);
+
+        return response()->json($product);
     }
 
     /**
@@ -36,15 +40,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
+        return response()->json($product);
     }
 
     /**
@@ -52,7 +48,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'type' => ['sometimes', 'required', 'string', 'max:255'],
+            'subtype' => ['sometimes', 'required', 'string', 'max:255'],
+            'price' => ['sometimes', 'required', 'numeric'],
+            'quantity_available' => ['sometimes', 'required', 'integer'],
+        ]);
+
+        $product->update($validated);
+
+        return response()->json($product);
     }
 
     /**
@@ -60,6 +66,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product deleted successfully'
+        ]);
     }
 }

@@ -57,7 +57,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     //     Route::get('orders/{order}', [OrderController::class, 'getOrder']);
     // });
 
-    // // Common product routes (available to all authenticated users)
-    // Route::get('products', [ProductController::class, 'index']);
-    // Route::get('products/{product}', [ProductController::class, 'show']);
+    // Product
+    Route::get('products', [ProductController::class, 'index']);
+    Route::get('products/{product}', [ProductController::class, 'show']);
+    Route::post('products', [ProductController::class, 'store']);
+    Route::patch('products/{product}', [ProductController::class, 'update']);
+    Route::delete('products/{product}', [ProductController::class, 'destroy']);
 });
