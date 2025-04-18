@@ -1,12 +1,18 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FarmerController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 
 // Public routes
 Route::post('auth/login', [AuthController::class, 'login']);
@@ -56,11 +62,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     //     Route::get('orders', [OrderController::class, 'getClientOrders']);
     //     Route::get('orders/{order}', [OrderController::class, 'getOrder']);
     // });
-
-    // Product
-    Route::get('products', [ProductController::class, 'index']);
-    Route::get('products/{product}', [ProductController::class, 'show']);
-    Route::post('products', [ProductController::class, 'store']);
-    Route::patch('products/{product}', [ProductController::class, 'update']);
-    Route::delete('products/{product}', [ProductController::class, 'destroy']);
 });
+
+
+Route::resource('products', ProductController::class)->middleware('auth:sanctum');;
