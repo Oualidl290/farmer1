@@ -126,14 +126,14 @@ export default function Home() {
                 Get Started
               </button>
               <button className="px-8 py-3 border border-green-600 text-green-600 rounded-lg hover:bg-green-50 font-medium">
-                Book a Demo
+                <Link to="/farmer/dashboard">Book a demo</Link>
               </button>
             </div>
           </div>
 
           <div className="mt-12 bg-white rounded-xl shadow-xl p-2 max-w-5xl mx-auto">
             <div className="aspect-w-16 aspect-h-9 bg-gray-200 rounded-lg flex items-center justify-center">
-              <p className="text-gray-500">Dashboard Preview</p>
+              <img src="/image.png" />
             </div>
           </div>
         </div>
