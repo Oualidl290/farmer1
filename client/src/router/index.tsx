@@ -5,6 +5,8 @@ import FarmerDashboardLayout from "../layouts/farmer-dashboard";
 import Home from "./pages/home";
 // farmer page
 import FarmerDashboard from "./pages/dashboard/index";
+import ProductsDashboard from "./pages/dashboard/products";
+import Login from "./pages/auth/login";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,19 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <FarmerDashboard />,
+      },
+      {
+        path: "products",
+        element: <ProductsDashboard />,
+      },
+    ],
+  },
+  {
+    path: "auth",
+    children: [
+      {
+        path: "login",
+        element: <Login />,
       },
     ],
   },
